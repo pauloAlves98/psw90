@@ -5,6 +5,8 @@ from django.contrib.messages import constants
 from django.contrib import messages, auth
 
 def cadastro(request):
+
+
     if request.method == 'GET':
         return render(request, 'cadastro.html')
     else:
@@ -43,6 +45,9 @@ def cadastro(request):
             return redirect('/usuarios/cadastro')
 
 def logar(request):
+    if request.user.is_authenticated:
+        return redirect(reverse('novo_flashcard'))
+
     if request.method == 'GET':
         return render(request, 'login.html')
     elif request.method == 'POST':
