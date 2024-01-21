@@ -80,8 +80,8 @@
             <tr class="linha">
                 <th><a href="{% url 'desafio' desafio.id %}">{{desafio.id}}</a></th>
                 <td>{{desafio.titulo}}</td>
-                <td>{{desafio.get_dificuldade_display}}</td>
-                <td>{{desafio.status}}</td>
+                <td><span class="container flashcard-{{desafio.get_dificuldade_display |slugify}} ">{{desafio.get_dificuldade_display}}</span></td>
+                <td><span class="container {% if desafio.status == 'INCOMPLETO' %}bg-secondary px-2{% else %} bg-info 2 {% endif %}">{{desafio.status}}</span></td>
             </tr>
             {% endfor %}
             </tbody>

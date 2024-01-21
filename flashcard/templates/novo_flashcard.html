@@ -5,10 +5,12 @@
 <link href="{% static 'flashcard/css/novo_flashcard.css' %}" rel="stylesheet">
 <script src="{% static 'flashcard/js/flashcard.js' %}"></script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 {% endblock 'cabecalho' %}
 
 {% block 'conteudo' %}
 {% include 'partials/header.html' %}
+
 <div class="container">
     <br>
     <br>
@@ -74,31 +76,30 @@
                             <option value=""></option>
                             {% for categoria in categorias %}
 
-                             {% if categoria.id == categoria_filtrar  %}
-                                    entrou
-                               <option value="{{ categoria.id }}" selected>
-                                   {{categoria.nome}}
-                                </option>
-                              print("igual")
-                             {% else %}
-                                {{categoria.id}} e {{categoria_filtrar}}
-                                <option value="{{ categoria.id }}">
-                                 {{categoria.nome}}
-                                </option>
-                                print("aq")
-                             {% endif %}
+                            {% if categoria.id == categoria_filtrar %}
+                            entrou
+                            <option value="{{ categoria.id }}" selected>
+                                {{categoria.nome}}
+                            </option>
+                            print("igual")
+                            {% else %}
+                            {{categoria.id}} e {{categoria_filtrar}}
+                            <option value="{{ categoria.id }}">
+                                {{categoria.nome}}
+                            </option>
+                            print("aq")
+                            {% endif %}
                             {% endfor %}
                         </select>
                     </div>
                     <div class="col-md">
                         <label>Dificuldade</label>
                         <select name="dificuldade" class="form-select">
-                             <option value=""></option>
+                            <option value=""></option>
                             {% for dificuldade in dificuldades %}
-
-                             <option value="{{dificuldade.0}}" {% if dificuldade.0 == dificuldade_filtrar  %}selected{% endif %}>
-                                 {{dificuldade.1}}
-                             </option>
+                            <option value="{{dificuldade.0}}" {% if dificuldade.0 == dificuldade_filtrar %}selected{% endif %}>
+                                {{dificuldade.1}}
+                            </option>
                             {% endfor %}
                         </select>
                     </div>
@@ -113,8 +114,8 @@
 
             {% for flash in flashcards %}
 
-            <div class="box-new-flashcard" onclick="flip_card({{ flash.id }})" >
-                <div class="flashcard  flashcard-{{flash.get_dificuldade_display |slugify }}" >
+            <div class="box-new-flashcard" onclick="flip_card({{ flash.id }})">
+                <div class="flashcard  flashcard-{{flash.get_dificuldade_display |slugify }}">
                     <div class="flashcard-categoria">
                         {{flash.categoria}}
 
