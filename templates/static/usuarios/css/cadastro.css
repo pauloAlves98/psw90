@@ -58,6 +58,10 @@
     background-color: #D98562
 }
 
+.cor20 {
+     background-color: yellow;
+}
+
 .input-form {
     background-color: #0b1526;
     padding: 10px;
@@ -78,3 +82,4 @@
     padding-left: 25px;
     padding-right: 25px;
 }
+
