@@ -15,10 +15,10 @@ Projeto desenvolvido na [PYSTACK WEEK 9.0](https://www.youtube.com/@pythonando).
 <img src="screenshot/flash.PNG" width="400">
 
 #### Desafios
-<img src="screenshot/desafios.PNG" width="400">>
+<img src="screenshot/desafios.PNG" width="400">
 
 #### Apostilas
-<img src="screenshot/apostilas.PNG" width="400">>
+<img src="screenshot/apostilas.PNG" width="400">
 
 
 ## Tecnologias Utilizadas
