@@ -40,7 +40,7 @@ class Desafio(models.Model):
              'blank':'Selecione um titulo',
             'null': 'Selecione um título.',
         })
-    categoria = models.ManyToManyField(Categoria, blank=False,  error_messages={
+    categoria = models.ManyToManyField(Categoria, blank=False, null=False,  error_messages={
              'blank':'Selecione uma ou mais categorias!',
         'null': 'Selecione uma ou mais categorias.',
         })

@@ -6,10 +6,9 @@
  --light-color: #00c1f3;
  --contrast-color: #f4c96b;
  --differential-color: #58fcd5;
-
+AULA 1 5
 }
 body{
  background-color: var(--dark-color) !important;
  color: white !important;
 }
-

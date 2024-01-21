@@ -132,10 +132,12 @@ def iniciar_desafio(request):
                                                             'categorias': categorias2,
                                                             'dificuldades': dificuldades, })
 
+
         #BUSCA OS FLASHCARDS RELACIONADOS
         flashcards = Flashcard.objects.filter(user=request.user).filter(dificuldade=dificuldade).filter(categoria_id__in=categorias).order_by('?')
 
-        #PS: Desafio da Aula 2 - Exibir Messeges
+
+        # Desafio da aula 2 - Exibir Messeges
         if flashcards.count() < int(qtd_perguntas):
             messages.add_message(
                 request,
@@ -144,12 +146,14 @@ def iniciar_desafio(request):
             )
             return redirect('/flashcard/iniciar_desafio/')
 
-        #SALVA PRIMEIRA ANTES DE ADD AS CATEGORIAS
+
         desafio.save()
         # ADICIONA TODAS AS CATEGORIAS SELECIONADAS MANY TO MANY
         desafio.categoria.add(*categorias)
-        flashcards = flashcards[: int(qtd_perguntas)]
 
+        flashcards = flashcards[: int(qtd_perguntas)]
+        print('count 2')
+        print(flashcards.count())
         for f in flashcards:
             flashcard_desafio = FlashcardDesafio(
                 flashcard=f,
@@ -240,33 +244,3 @@ def responder_flashcard(request, id):
     flashcard_desafio.acertou = True if acertou == '1' else False
     flashcard_desafio.save()
     return redirect(f'/flashcard/desafio/{desafio_id}/')
-
-def relatorio(request, id):
-    if not request.user.is_authenticated:
-        return redirect(reverse('login'))
-
-    desafio = Desafio.objects.get(id=id)
-
-
-    acertos = desafio.flashcards.filter(acertou=True).count()
-    erros = desafio.flashcards.filter(acertou=False).count()
-
-    #qtde
-    dados = [acertos, erros]
-
-    categorias = desafio.categoria.all()
-    name_categoria = [i.nome for i in categorias]
-
-    #labels
-    dados2 = []
-
-    for categoria in categorias:
-        dados2.append(desafio.flashcards.filter(flashcard__categoria=categoria).filter(acertou=True).count())
-
-
-    #fazer
-    melhores_materias = []
-    piores_materias = []
-
-
-    return render(request, 'relatorio.html', {'desafio': desafio, 'dados': dados, 'categorias': name_categoria, 'dados2': dados2,},)
